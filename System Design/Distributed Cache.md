@@ -1,4 +1,4 @@
-![[Screenshot 2026-03-11 at 9.23.30 PM.png]]
+![Screenshot 2026-03-11 at 9.23.30 PM.png](../Screenshot%202026-03-11%20at%209.23.30%20PM.png)
 
 ## Time Complexity of Consistent Hashing
 
