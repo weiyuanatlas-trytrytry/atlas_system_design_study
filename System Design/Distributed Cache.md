@@ -1,5 +1,31 @@
 ![Screenshot 2026-03-11 at 9.23.30 PM.png](../Screenshot%202026-03-11%20at%209.23.30%20PM.png)
 
+## 中文总结 (Chinese Summary)
+
+这份文档主要讲解了**分布式缓存（Distributed Cache）**中的几个核心设计概念，可以分为三个主要部分进行总结：
+
+### 1. 一致性哈希的时间复杂度 (Time Complexity of Consistent Hashing)
+文档解释了一致性哈希底层的核心数据结构（通常是**红黑树**或**有序数组**），并分析了在动态扩缩容时的复杂度：
+* **数据路由（寻找目标节点）**：时间复杂度为 $\mathcal{O}(\log N)$。通过计算 key 的哈希值，沿着哈希环顺时针找到第一个节点。
+* **节点增加（向外扩展）**：时间复杂度为 $\mathcal{O}(V \log N)$（其中 $V$ 是单个物理机对应的虚拟节点数）。需要将新节点的哈希值插入结构中，并进行少量的数据迁移。
+* **节点移除（向内缩容/故障恢复）**：时间复杂度同样为 $\mathcal{O}(V \log N)$。
+* **总结对比**：相比于传统取模运算（$\mathcal{O}(1)$ 的路由复杂度但会导致 $\mathcal{O}(M)$ 的全局缓存失效（雪崩）），一致性哈希虽然略微增加了路由延迟至 $\mathcal{O}(\log N)$，但极大程度地控制了扩缩容时的数据迁移成本（仅为 $\mathcal{O}(M/N)$），非常适合弹性伸缩的分布式系统。
+
+### 2. 高可用性设计 (High Availability)
+* 主要是通过**冗余缓存服务器**和**主从复制**（Leader-Follower 算法）来实现可用性。
+* 当前虽然有两个数据分片副本，但由于它们在**同一个数据中心**内并采用同步写入，这获得了强一致性但无法抵御机房级别的灾难。
+* 若要跨数据中心实现极高可用性，由于跨机房同步写入性能太差，通常必须采用**异步复制**，这就要在（CAP 定理中的）**强一致性**和**可用性**之间做出妥协。
+
+### 3. Memcached 与 Redis 的全面对比
+文档详细对比了这两大主流 NoSQL 缓存系统的差异：
+* **数据结构**：Memcached 仅支持简单的 Key-Value 字符串；而 Redis 支持极其丰富的数据结构（如 List、Set、Sorted Set、Hash 等）。
+* **持久化**：Memcached 不支持（数据存在内存中，重启即丢失）；Redis 支持完整的持久化方案（AOF 和 RDB 日志/快照）。
+* **线程模型**：Memcached 是**多线程**模型，能高效利用多核；Redis 核心执行是**单线程**模型，避免了复杂的锁调度。
+* **集群与分片**：Memcached 依赖第三方客户端组件实现；Redis 拥有内置原生的复制机制和 Redis Cluster 分片支持。
+* **内存使用与最佳场景**：Memcached 更适合缓存大体积的简单对象或 HTML 片段；Redis 功能更强大，适用于复杂的排行榜、数据操作以及对数据有持久化需求的场景（如还支持事务、Lua脚本、地理空间等功能）。
+
+---
+
 ## Time Complexity of Consistent Hashing
 
 The efficiency of Consistent Hashing relies heavily on its underlying data structure. To achieve optimal routing and dynamic scaling, the **Hash Ring** is typically implemented as a **balanced binary search tree** (e.g., Red-Black Tree, often using `TreeMap` in Java) or a **sorted array** (employing binary search).
