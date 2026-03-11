@@ -21,7 +21,13 @@
 ### 3. 三大常见的消息队列模式 (Messaging Patterns)
 针对不同的业务需求，消息队列演化出了不同的路由投递模式：
 1. **点对点模式 (Point-to-point):** _一对一模型_。一条消息最终只被**一个**指定的消费者消费。适用于工作任务分发（如任务队列），确保同一个任务被处理一次。
+   
+   ![Point-to-point communication](https://www.educative.io/api/page/6120029292986368/image/download/5754308000088064?page_type=collection_lesson&get_optimised=true&collection_token=uV12aHzSTrxJiwv2OC2sD2 "Point-to-point communication")
+
 2. **发布/订阅模式 (Pub/Sub):** _一对多模型_。生产者（发布者）将消息发向一个主题 (Topic)，系统会将该消息分发给**所有**订阅了该主题的消费者。常用于事件驱动架构（如实时更新、通知系统、消息广播）。
+   
+   ![Pub/Sub](https://www.educative.io/api/page/6120029292986368/image/download/6491334655737856?page_type=collection_lesson&get_optimised=true&collection_token=uV12aHzSTrxJiwv2OC2sD2 "Pub/Sub")
+
 3. **请求/响应模式 (Request/reply):** _双向同步模型_。客户端发送请求并在另外的队列上等待响应。适用于需要即时反馈的场景（如 API 调用、微服务间明确的结果聚合）。
 
 ### 4. 最佳实践与核心挑战 (Best Practices)
