@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "System Design/Distributed Cache.md",
+                "file": "System Design/Design Distributed Message Queue.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Distributed Cache"
+              "title": "Design Distributed Message Queue"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "System Design/Distributed Cache.md",
+                "file": "System Design/Design Distributed Message Queue.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Distributed Cache"
+              "title": "Backlinks for Design Distributed Message Queue"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "System Design/Distributed Cache.md",
+                "file": "System Design/Design Distributed Message Queue.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Distributed Cache"
+              "title": "Outgoing links from Design Distributed Message Queue"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "System Design/Distributed Cache.md",
+                "file": "System Design/Design Distributed Message Queue.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Distributed Cache"
+              "title": "Outline of Design Distributed Message Queue"
             }
           }
         ]
@@ -185,9 +185,10 @@
   },
   "active": "0e8cd1f717f3301e",
   "lastOpenFiles": [
+    "System Design/Distributed Cache.md",
+    "System Design/Design Distributed Message Queue.md",
     "Screenshot 2026-03-11 at 9.23.30 PM.png",
     "Welcome.md",
-    "System Design/Distributed Cache.md",
     "System Design"
   ]
 }

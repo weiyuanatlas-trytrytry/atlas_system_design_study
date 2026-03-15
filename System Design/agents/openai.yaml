@@ -1,0 +1,7 @@
+interface:
+  display_name: "System Design Interview"
+  short_description: "Practice interview-ready system design"
+  default_prompt: "Use $system-design-interview to help me practice a system design interview question."
+
+policy:
+  allow_implicit_invocation: true
